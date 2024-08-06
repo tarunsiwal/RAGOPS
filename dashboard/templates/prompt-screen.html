@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %} Chat Screen {% endblock %}
+{% load static %}
+{% block content %}
+
+{% block heading_new_chat_upgrade %}
+<div class="d-flex justify-content-between">
+    <h5 class="mb-4 mts-4">{% block pageheading %}Update Prompt{% endblock %}</h5>
+    <div class="d-flex">
+        <form action="{% url 'new_chat' %}" method="post">
+            {% csrf_token %}
+            <button class="primary_site_btn_outline">New Chat <i class="fa-regular fa-pen-to-square ps-2"></i></button>
+        </form>
+        <button class="primary_site_btn ms-3">Upgrate Plan</button>
+    </div>
+</div>
+{% endblock %}
+
+<div class="col-12 align-self-center main-block card-style p-4 mb-2">
+    <div class="chat-history" id="chat-container">
+        <p class="col-10 mx-auto justify-content-evenly">Types of Writing Prompts<br>
+            Writing prompt assignments do come in different forms, but there are multiple types of writing.
+        </p>
+        <div class="result-text-area col-10 mx-auto justify-content-evenly flex-row pt-5 ">
+            <div class="col-5">
+              <a class="primary_site_btn_outline mb-4">Descriptive</a>
+              <a class="primary_site_btn_outline mb-4">Narrative</a>
+              <a class="primary_site_btn_outline mb-4">Persuasive</a>
+            </div>
+            <div class="col-5">
+              <a class="primary_site_btn_outline mb-4">Expository/informative</a>
+              <a class="primary_site_btn_outline mb-4">Opinion</a>
+              <a class="primary_site_btn_outline mb-4">Research</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-console col-10">
+        <form method="post" action="">
+            <div class="form-input-field cust_promt">
+                <div class="form-group d-flex">
+                    <input class="pe-2" type="text" name="user_query" placeholder="Write custome prompt..."
+                        value="{{ form.user_response.value }}">
+                    {{ form.field1.errors }}
+                    <button type="button" value="submit"><i class="fa-solid fa-microphone"></i></button>
+                </div>
+                <button type="submit" class="btn submit-btn" value="Submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- <div class="col-4 ps-4 pe-4">
+    <div class="card-style quick_settings p-3 mb-4">
+        <h5 class="mb-3 mts-4">Prompt</h5>
+        <hr>
+        <textarea class="prompt_input" id="prompt" name="prompt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto hic adipisci totam cum laborum pariatur sequi molestiae eaque veritatis tenetur! Fugiat, ea? Cumque soluta alias, laborum provident sint accusantium ratione!</textarea>
+        <button class="primary_site_btn w-100" type="submit">Update Prompt</button>
+    </div>
+
+</div> -->
+
+</div>
+</div>
+{% block additional_scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.1/lottie.min.js"></script>
+<script src="path/to/lottie.min.js"></script>
+<script>
+    // Initialize Lottie
+    const animationContainer = document.getElementById('lottie-animation');
+    const animationData = {
+        container: animationContainer,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: "{% static 'lotifile/chat_screen_animation.json' %}",
+    };
+
+    const anim = lottie.loadAnimation(animationData);
+</script>
+{% endblock %}
+{% endblock %}

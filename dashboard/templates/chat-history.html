@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+{% block heading_new_chat_upgrade %}
+<div class="d-flex justify-content-between">
+    <h5 class="mb-4 mts-4">{% block pageheading %} Chat History {% endblock %}</h5>
+    <div class="d-flex">
+        <form action="{% url 'new_chat' %}" method="post">
+            {% csrf_token %}
+            <button class="primary_site_btn_outline">New Chat <i class="fa-regular fa-pen-to-square ps-2"></i></button>
+        </form>
+        <button class="primary_site_btn ms-3">Upgrate</button>
+    </div>
+</div>
+{% endblock %}
+
+<div class="col-12 align-self-center main-block card-style p-4">
+    <div class="chat-history h-100 d-flex flex-column">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Chat ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Pricing</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for chat_history in chat_histories %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ chat_history.chat_id }}</td>
+                    <td>{{ chat_history.chat_name }}</td>
+                    <td>{{ chat_history.pricing }}$</td>
+                    <td>{{ chat_history.timestamp }}</td>
+                    <td class="d-flex justify-content-start">
+                        <form action="{% url 'delete_chat_history' chat_history.chat_id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn"><i class="fa-regular fa-trash-can"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

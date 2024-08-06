@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %} Track yor pricing {% endblock %}
+{% load static %}
+{% block content %}
+
+{% block heading_new_chat_upgrade %}
+<div class="d-flex justify-content-between">
+    <h5 class="mb-4 mts-4">{% block pageheading %}Track yor pricing{% endblock %}</h5>
+    <div class="d-flex">
+        <button class="primary_site_btn ms-3">Upgrate Plan</button>
+    </div>
+</div>
+{% endblock %}
+
+<div class="col-8 align-self-center justify-content-start main-block card-style p-4  m-auto  mb-2">
+    <div class="mb-4">Check pricing of your chat.</div>
+    <br>
+    <div class="w-100">
+        <span style="font-size: 2rem;">Number of Queries: <span style="color: #ab66ff;">{{ count }}</span></span>
+        <br>
+        <span style="font-size: 2rem;">Total pricing: <span style="color: #ab66ff;">{{ pricing|floatformat:2 }}$</span></span>
+    </div>
+</div>
+
+<div class="col-4 ps-4 pe-4">
+    <div class="card-style p-3 mb-4">
+        <h5 class="mb-3 mts-4">Buy Credits</h5>
+        <hr>
+        <p>{{user.username}}, your available credits are</p>
+        <h5><span style="color: #ab66ff;">1450</span> <span style="font-size: 0.8rem;">credits</span></h5>
+        <div class="d-flex justify-content-between mt-3">
+            <button class="secondary_site_btn">Billing history</button>
+            <button class="primary_site_btn">Buy more credits</button> 
+        </div>
+        
+    </div>
+    <!-- <div class="row">
+        <a class="primary_site_btn_outline m-auto " style="width: auto;" href="{% url 'chat_screen_temp' %}">Next Step</a>
+    </div> -->
+</div>
+
+{% endblock %}

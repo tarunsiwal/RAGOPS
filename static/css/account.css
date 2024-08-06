@@ -1,0 +1,57 @@
+.account-container{
+    width: auto;
+}
+#myVideo {
+    width:50%;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+}
+.video_container{
+  height: 100vh;
+}
+.primary_btn {
+    width: 100%;
+    border-radius: 6px;
+    background: linear-gradient(91deg, #d8bff6 2.6%, #b98fdd 99.83%);
+    border: none;
+    color: #fff;
+    height: 38px;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  transition: 0.3s ease-in-out;
+
+  }
+  .primary_btn:hover{
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+  .video_container{
+    margin: 0;
+    padding: 0;
+  }
+
+.login-form .form-group{padding: 1rem 0;}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+
+}
+::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 50px;
+}
+/* ::-webkit-scrollbar-horizontal {
+  height: 4px;
+} */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ccc;
+  border-radius: 50px;
+}

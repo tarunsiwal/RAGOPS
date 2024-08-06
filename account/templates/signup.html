@@ -1,0 +1,52 @@
+{% extends "account.html" %}
+{% block content %}
+
+<div class="global-container">
+    <div class="card login-form">
+        <div class="card-body p-5">
+            <h3 class="card-title text-center">Register for a user account</h3>
+            <div class="card-text">
+
+                <form method="post" action="{% url 'signup' %}">
+                    {% csrf_token %}
+
+                    {% if messages %}
+                    {% for message in messages%}
+                    <div class="alert alert-success alert-dismissible " role="alert">{{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" name="username" class="form-control form-control-sm" id="emailUsername"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" name="email" class="form-control form-control-sm" id="emailAddress"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" name="confirm_password" class="form-control" id="confirm_password">
+                    </div>
+                    <div class="d-grid gap-2 pt-3">
+                        <button type="submit" class="primary_btn">Sign up</button>
+                    </div>
+                    <div class="sign-up">
+                        Aready have an account? <a href="{% url 'login' %}">Sign in</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

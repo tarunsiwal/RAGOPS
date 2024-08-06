@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block title %} Get your API {% endblock %}
+{% load static %}
+{% block content %}
+
+{% block heading_new_chat_upgrade %}
+<div class="d-flex justify-content-between">
+    <h5 class="mb-4 mts-4">{% block pageheading %}Get your API{% endblock %}</h5>
+    <div class="d-flex">
+        <form action="{% url 'new_chat' %}" method="post">
+            {% csrf_token %}
+            <button class="primary_site_btn_outline">New Chat <i class="fa-regular fa-pen-to-square ps-2"></i></button>
+        </form>
+        <button class="primary_site_btn ms-3">Upgrate Plan</button>
+    </div>
+</div>
+{% endblock %}
+
+<div class="d-flex col-12 align-self-center main-block card-style p-4" style="height: unset;">
+    <div class="col-8 content-block pe-4">     
+        <h4 class="mb-3">Introduction to REGOPS APIs</h4>
+        REGOPS offers a variety of APIs to allow developers to interface with REGOPS products and embed them to there websites. We currently provide product-based REST APIs.
+        <span class="pb-3 w-100 d-block"></span>
+        <h4 class="mb-3">REST APIs</h4>
+        Our REST APIs are organized based on REGOPS product, but the base URL for all REGOPS REST API requests is https://regops/api/chatlog/.
+        <br>
+        <span class="pb-3 w-100 d-block"></span>
+        <ul>
+            <li>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non soluta sint voluptatem! Consequuntur, atque beatae voluptatum a veritatis, dignissimos eius suscipit asperiores placeat nam possimus! Officia quas ipsa fuga est!
+            </li>
+            <li>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non soluta sint voluptatem! Consequuntur, atque beatae voluptatum a veritatis, dignissimos eius suscipit asperiores placeat nam possimus! Officia quas ipsa fuga est!
+            </li>
+            <li>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non soluta sint voluptatem! Consequuntur, atque beatae voluptatum a veritatis, dignissimos eius suscipit asperiores placeat nam possimus! Officia quas ipsa fuga est!
+            </li>
+            <li>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non soluta sint voluptatem! Consequuntur, atque beatae voluptatum a veritatis, dignissimos eius suscipit asperiores placeat nam possimus! Officia quas ipsa fuga est!
+            </li>
+        </ul>
+            
+    </div>
+    <div class="col-4 ps-4 api-code">
+        <div class="card-style quick_settings p-3 mb-4">
+            <h5 class="mb-3 mts-4">API Code</h5>
+            <hr>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <strong style="color: rgb(0, 153, 255);">GET</strong>
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body  bg-dark text-white">
+                        <strong>Get a Chat responce</strong>
+                      GET /api/chatlog
+                      <span class="pb-3 w-100 d-block"></span>
+                      <code style="color: rgb(0, 153, 255);"><pre>
+import requests
+
+url = "https://api.example.com/data"  # Replace with the actual API endpoint URL
+
+try:
+    response = requests.get(url)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        print("API Response:")
+        print(response.json())  # Assuming the response is in JSON format
+    else:
+        print(f"Error: {response.status_code} - {response.text}")
+
+except requests.RequestException as e:
+    print(f"An error occurred: {e}")
+                        
+                        </pre></code>
+                    </div>
+                </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <strong style="color: rgb(140, 222, 18);">POST</strong>
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body bg-dark text-white">
+                      <strong>Send query to a Chat to get responce</strong>
+                      POST /api/chatlog
+                    <span class="pb-3 w-100 d-block"></span>
+                      <code style="color: rgb(0, 153, 255);"><pre>
+import requests
+
+url = "https://your-api-endpoint.com/path/to/chatlog/"
+# Replace "YOUR_ACCESS_TOKEN" with the actual access token if required for authentication
+headers = {
+    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+    "Content-Type": "application/json",
+}
+
+try:
+    response = requests.get(url, headers=headers)
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        print("API Response:")
+        print(response.json())
+    else:
+        print(f"Error: {response.status_code} - {response.text}")
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+                      </pre></code>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <strong style="color: rgb(243 113 78);">Delete</strong>
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <strong>Delet request</strong>
+                      <br>
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non soluta sint voluptatem! Consequuntur, atque beatae voluptatum a veritatis, dignissimos eius suscipit asperiores placeat nam possimus! Officia quas ipsa fuga est! Lorem, ipsum dolor sit amet cons
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+</div>
+
+{% endblock %}

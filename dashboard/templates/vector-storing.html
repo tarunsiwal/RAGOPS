@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h5 class="mb-4 mts-4">{% block pageheading %}Select your Vector Storing model to continue{% endblock %}</h5>
+<div class="col-12 d-flex flex-column">
+    <div class="row">
+        <div class="card_container col-3 p-4">
+            <div class=" card justify-content-center d-flex align-items-center">
+                <img src="{% static 'img/comp_logo/pinecone.png' %}" alt="" style="width: 200px;height: 66.667px;">
+                <div class="card-body d-flex align-items-center flex-column">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <div class="btn-container">
+                        <button class="primary_site_btn w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            data-bs-auto-close="true" aria-expanded="false">
+                            Choose
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card_container col-3 p-4">
+            <div class=" card justify-content-center d-flex align-items-center">
+                <div class="d-flex justify-content-center align-items-center" style="width: 200px;height: 66.667px;"><img src="{% static 'img/comp_logo/faiss.webp' %}" style="width: 40%;" alt=""></div>
+                <div class="card-body d-flex align-items-center flex-column">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <div class="btn-container">
+                        <button class="primary_site_btn w-100 dropdown-toggle" type="button">
+                            Choose
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card_container col-3 p-4">
+            <div class=" card justify-content-center d-flex align-items-center">
+                <div class="d-flex justify-content-center align-items-center" style="width: 200px;height: 66.667px;"><img src="{% static 'img/comp_logo/azure.png' %}" style="width: 70%;" alt=""></div>
+                <div class="card-body d-flex align-items-center flex-column">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <div class="btn-container">
+                        <button class="primary_site_btn w-100 dropdown-toggle" type="button">
+                            Choose
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card_container col-3 p-4">
+            <div class=" card justify-content-center d-flex align-items-center">
+                <div class="d-flex justify-content-center align-items-center" style="width: 200px;height: 66.667px;"><img src="{% static 'img/comp_logo/chroma.png' %}" style="width: 70%;" alt=""></div>
+                <div class="card-body d-flex align-items-center flex-column justify-content-between">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <div class="btn-container">
+                        <button class="primary_site_btn w-100 dropdown-toggle" type="button">
+                            Choose
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card_container col-3 p-4">
+            <div class=" card justify-content-center d-flex align-items-center">
+                <img src="{% static 'img/comp_logo/aws.png' %}" alt="" style="width: 200px;height: 66.667px;">
+                <div class="card-body d-flex align-items-center flex-column">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <div class="btn-container">
+                        <button class="primary_site_btn w-100 dropdown-toggle" type="button">
+                            Choose
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card_container col-3 p-4">
+            <div class=" card justify-content-center d-flex align-items-center">
+                <img src="{% static 'img/comp_logo/GC.png' %}" alt="" style="width: 200px;height: 66.667px;">
+                <div class="card-body d-flex align-items-center flex-column">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <div class="btn-container">
+                        <button class="primary_site_btn w-100 dropdown-toggle" type="button">
+                            Choose
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card_container col-3 p-4">
+            <div class="card justify-content-center d-flex align-items-center" style="height: 100%;">
+                <div class="d-flex justify-content-center align-items-center" style="font-size: 1.6rem;width: 200px;height: 66.667px;">On Premises</div>
+                <div class="card-body d-flex align-items-center flex-column justify-content-between">
+                    <p class="card-text">Connect your vector storing database on Premises
+                    <div class="btn-container">
+                        <button class="primary_site_btn w-100 dropdown-toggle" type="button">
+                            Choose
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <a class="primary_site_btn_outline m-auto " style="width: auto;" href="{% url 'data_connect' %}">Next Step</a>
+    </div>
+</div>
+{% endblock %}

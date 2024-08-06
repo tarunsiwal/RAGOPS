@@ -1,0 +1,151 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} RAGOPS {% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <script src="{% static 'js/index.js' %} "></script>
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+
+</head>
+
+<body>
+  {% if user.is_authenticated %}
+  <header>
+    <nav class="navbar navbar-expand navbar-dark px-2 pt-3">
+      <a class="px-4" href="{% url 'base' %}"><img src="{% static 'img/logomain.svg' %}" style="width: 100px;" alt="logo"></a>
+      <div class="profile">
+        <span>{{user.username}}</span>
+        <div class="profile-picture">
+          <span><i class="fa-solid fa-user"></i></span>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item" data-bs-href="#">Account</li>
+            <li class="dropdown-item"><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="app-side-nav collapsed" id="sidebar">
+      <div class="app-side-nav-child">
+        <div class="side-nav-button p-2 ms-2 text-light">
+          <div onclick="toggleSidebar()" id="sidebarIcon"><i class="fa-solid fa-bars"></i></div>
+          <span><img src="{% static 'img/logomain.svg' %}" alt="logo" style="width: 100px;"></span>
+        </div>
+
+        <ul class="nav-list">
+          <li class="nav-list-item">
+            <a href="{% url 'base' %}">
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-list-item">
+            <a href="{% url 'chat_history' %}">
+              <span>History</span>
+            </a>
+          </li>
+          <li class="nav-list-item">
+            <a href="{% url 'get_API' %}">
+              <span>Get your chat API</span>
+            </a>
+          </li>
+          <li class="nav-list-item">
+            <a href="{% url 'track_query' %}">
+              <span>Track & manage Query</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <ul class="nav-list ">
+        <li class="nav-list-item">
+          <a href="">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Privacy Policy</span>
+          </a>
+        </li>
+        <li class="nav-list-item">
+          <a href="">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </header>
+  <div class="pattern_background"></div>
+
+  <div class="container-fluid main-container">
+    <div class="row align-items-start pb-0">
+      {% block content %}
+      <h5 class="mb-4 mts-4">{% block pageheading %}What do you want to do with your data?{% endblock %}</h5>
+      <div class="col-12 align-self-center main-block card-style p-4 mb-2">
+        <div class="result-text-area col-10 mx-auto justify-content-evenly flex-row pt-5 ">
+
+          <div class="col-5">
+            <form action="{% url 'new_chat' %}" method="post">
+              {% csrf_token %}
+              <button class="primary_btn_left_align"><i class="fa-regular fa-file-lines pe-3"></i> Query over
+                document</button>
+            </form>
+            <!-- <a class="primary_btn_left_align" action="{% url 'new_chat' %}" method="post"><i class="fa-regular fa-file-lines pe-3"></i>Query over document</a> -->
+            <a class="primary_btn_left_align"><i class="fa-regular fa-file-audio pe-3"></i>Text to speech</a>
+            <a class="primary_btn_left_align"><i class="fa-solid fa-microchip pe-3"></i>Recommendation Engine</a>
+            <a class="primary_btn_left_align"><i class="fa-solid fa-globe pe-3"></i>Web query and scraping</a>
+            <a class="primary_btn_left_align"><i class="fa-regular fa-face-laugh-beam pe-3"></i>OCR report</a>
+            <a class="primary_btn_left_align"><i class="fa-solid fa-masks-theater pe-3"></i>Fraud detection</a>
+          </div>
+          <div class="col-5">
+            <a class="primary_btn_left_align" href="{% url 'choose_llm' %}"><i
+                class="fa-solid fa-chart-line pe-3"></i>Data analysis</a>
+            <a class="primary_btn_left_align"><i class="fa-solid fa-volume-high pe-3"></i>Speech analysis</a>
+            <a class="primary_btn_left_align"><i class="fa-solid fa-photo-film pe-3"></i>Image & Video</a>
+            <a class="primary_btn_left_align"><i class="fa-solid fa-robot pe-3"></i>Gen AI Chatbot</a>
+            <a class="primary_btn_left_align"><i class="fa-regular fa-images pe-3"></i>Sentiment analysis</a>
+            <a class="primary_btn_left_align"><i class="fa-solid fa-file-audio pe-3"></i>Audio transcribe</a>
+          </div>
+
+        </div>
+      </div>
+      <!-- <div class="col-4 ps-4 pe-4">
+        <div class="card-style quick_settings p-2 mb-4">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut velit saepe eligendi accusantium, magni beatae
+          commodi doloremque provident eos ea optio voluptas sed unde atque at aperiam libero reprehenderit molestias.
+        </div>
+        
+      </div> -->
+    </div>
+  </div>
+  {% endblock %}
+  {% else %}
+  <p>Your not loged in? login <a href="{% url 'login' %}">here</a></p>
+  {% endif %}
+
+  <!-- {% if messages %}
+  {% for message in messages%}
+  <div class="alert alert-success alert-dismissible " role="alert">{{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endif %} -->
+
+  <div></div>
+  <p class="text-center copyright mt-2 mb-2">© Copyright 2023 RAGOPS | All Right
+    Reserved</p>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

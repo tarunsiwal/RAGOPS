@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %} Chat Screen {% endblock %}
+{% load static %}
+{% block content %}
+
+{% block heading_new_chat_upgrade %}
+<div class="d-flex justify-content-between">
+    <h5 class="mb-4 mts-4">{% block pageheading %}Ask Query{% endblock %}</h5>
+    <div class="d-flex">
+        <form action="{% url 'new_chat' %}" method="post">
+            {% csrf_token %}
+            <button class="primary_site_btn_outline">New Chat <i class="fa-regular fa-pen-to-square ps-2"></i></button>
+        </form>
+        <button class="primary_site_btn ms-3">Upgrate Plan</button>
+    </div>
+</div>
+{% endblock %}
+
+<div class="col-8 align-self-center main-block card-style p-4 mb-2">
+    <div class="chat-history" id="chat-container">
+        {% if start_chat %}
+        <div class="start_chat">
+                <p class="logo"><img src="{% static 'img/logomain.svg' %}" alt="logo" style="width: 150px;"></p>
+                <p class="message">{{ start_chat }}</p>
+                <div id="lottie-animation" style="height: 150px; width: 100%;"></div>
+        </div>
+        {% elif uploaded %}
+        <div class="start_chat">
+            <p class="logo"><img src="{% static 'img/logomain.svg' %}" alt="logo" style="width: 150px;"></p>
+
+            <div id="drop-area" class="mt-4">
+                <form action="{% url 'file_upload' %}" method="post" enctype="multipart/form-data" class="flex-column align-items-center">
+                    {% csrf_token %}
+                    <p>Drag and drop a file here or click to select a file</p>
+                    <input class="mb-3" type="file" id="fileElem" name="file" accept=".jpg, .jpeg, .png, .pdf" onchange="handleFiles(this.files)" required>
+                    <button type="submit" class="primary_site_btn" value="Submit">
+                        <i class="fa-solid fa-file-arrow-up pe-2 position-relative" style="right: 0;"></i> Upload
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+        
+        {% for entry in chat_log reversed %}
+        <div class="chat-entry pe-2">
+            <p><b>You</b><br> {{ entry.user_query }}</p>
+            <p><b>REGOPS</b><br> {{ entry.ai_response }}</p>
+        </div>
+        {% endfor %}
+        <span class="w-100 p-4"></span>
+        {% if messages %}
+        {% for message in messages%}
+        {% if message.warning %}
+        <div class="alert alert-warning alert-dismissible p-2 " role="alert">{{message}}
+            <button type="button" class="btn-close p-2" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alert-dismissible p-2 " role="alert">{{message}}
+            <button type="button" class="btn-close p-2" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="chat-console col-10">
+        <button type="button" class="btn btn-outline-secondary" value="Submit" data-bs-toggle="tooltip"
+            data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Upload document here.."><i
+                class="fa-solid fa-paperclip"></i></button>
+        <form method="post" action="{% url 'chat_screen' %}">
+            {% csrf_token %}
+            <div class="form-input-field">
+                <div class="form-group d-flex">
+                    <input class="pe-2" type="text" name="user_query" placeholder="Message REGOPS..."
+                        value="{{ form.user_response.value }}" required>
+                    {{ form.field1.errors }}
+                    <button type="button" value="submit"><i class="fa-solid fa-microphone"></i></button>
+                </div>
+                <button type="submit" class="btn submit-btn" value="Submit"><i
+                        class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-4 ps-4 pe-0">
+    <div class="card-style quick_settings p-3 mb-4">
+        <h5 class="mb-3 mts-4">Prompt</h5>
+        <hr>
+        <form action="{% url 'update_prompt' %}" method="post">
+            {% csrf_token %}
+            <textarea class="prompt_input" id="prompt" name="prompt">{{ latest_prompt }}</textarea>
+            <button class="primary_site_btn w-100" type="submit">Update Prompt</button>
+        </form>
+    </div>
+
+</div>
+
+</div>
+</div>
+{% block additional_scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.1/lottie.min.js"></script>
+<script src="path/to/lottie.min.js"></script>
+<script>
+    // Initialize Lottie
+    const animationContainer = document.getElementById('lottie-animation');
+    const animationData = {
+        container: animationContainer,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: "{% static 'lotifile/chat_screen_animation.json' %}",
+    };
+
+    const anim = lottie.loadAnimation(animationData);
+</script>
+{% endblock %}
+{% endblock %}
